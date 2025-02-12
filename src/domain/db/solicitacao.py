@@ -1,9 +1,13 @@
 from datetime import datetime
+from typing import List
 
 from sqlalchemy import String, DateTime, ForeignKey
-from sqlalchemy.orm import mapped_column, Mapped
+from sqlalchemy.orm import mapped_column, Mapped, relationship
 
+from src.domain.db.autorizacao import Autorizacao
 from src.domain.db.base import Base
+from src.domain.db.historico import Historico
+from src.domain.db.periodo import Periodo
 
 
 class Solicitacao(Base):
@@ -19,3 +23,7 @@ class Solicitacao(Base):
     status: Mapped[int] = mapped_column(String(20), nullable=False, default="pendente")
 
     data_solicitacao: Mapped[datetime] = mapped_column(DateTime, nullable=False, default=datetime.now())
+
+    periodo: Mapped[List[Periodo]] = relationship()
+    autorizacao: Mapped[List[Autorizacao]] = relationship()
+    historico: Mapped[List[Historico]] = relationship()

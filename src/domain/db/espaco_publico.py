@@ -1,8 +1,11 @@
+from typing import List
+
 from sqlalchemy import String, Text, Boolean, Integer
-from sqlalchemy.orm import Mapped
+from sqlalchemy.orm import Mapped, relationship
 from sqlalchemy.orm import mapped_column
 
 from src.domain.db.base import Base
+from src.domain.db.solicitacao import Solicitacao
 
 
 class EspacoPublico(Base):
@@ -15,3 +18,5 @@ class EspacoPublico(Base):
     descricao: Mapped[str] = mapped_column(Text, nullable=True)
     capacidade: Mapped[int] = mapped_column(Integer, nullable=False)
     disponibilidade: Mapped[bool] = mapped_column(Boolean, nullable=False, default=True)
+
+    solicitacao: Mapped[List[Solicitacao]] = relationship()
