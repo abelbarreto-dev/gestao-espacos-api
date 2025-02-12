@@ -8,7 +8,7 @@ from src.domain.db.base import Base
 class Usuario(Base):
     __tablename__ = "usuario"
 
-    id: Mapped[int] = mapped_column(primary_key=True)
+    id_usuario: Mapped[int] = mapped_column(primary_key=True)
 
     nome: Mapped[str] = mapped_column(String(100), nullable=False)
     email: Mapped[str] = mapped_column(String(100), nullable=False, unique=True)
