@@ -13,5 +13,5 @@ class Autorizacao(Base):
 
     id_solicitacao: Mapped[int] = mapped_column(ForeignKey("solicitacao.id_solicitacao"), nullable=False, unique=True)
 
-    data_emissao: Mapped[date] = mapped_column(Date, nullable=False, dafault=date.today())
+    data_emissao: Mapped[date] = mapped_column(Date, nullable=False, default=date.today())
     validade: Mapped[date] = mapped_column(Date, nullable=False)
