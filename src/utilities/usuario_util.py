@@ -10,21 +10,36 @@ regex_email = r"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"
 class UsuarioUtil:
     @classmethod
     def check_all(cls, usuario: Usuario):
-        if len(usuario.nome) > 100:
-            raise Exception("Name length over 100 characters")
-        if len(usuario.email) > 100:
-            raise Exception("Email length over 100 characters")
-        if len(usuario.perfil) > 20:
-            raise Exception("Perfil length over 20 characters")
+        cls.check_nome_length(usuario.nome)
+        cls.check_email_length(usuario.email)
+        cls.check_perfil_length(usuario.perfil)
+        cls.check_senha_length(usuario.senha)
 
         if usuario.perfil not in ("administrador", "solicitante"):
             raise Exception("Perfil must be 'administrador' or 'solicitante'")
 
-        if len(usuario.senha) < 6:
-            raise Exception("Senha length must at least 6 characters")
-
         if not cls.check_email(usuario.email):
             raise Exception("Email must be valid")
+
+    @classmethod
+    def check_nome_length(cls, nome: str) -> bool:
+        if len(nome) > 100:
+            raise Exception("Name length over 100 characters")
+
+    @classmethod
+    def check_email_length(cls, email: str) -> bool:
+        if len(email) > 100:
+            raise Exception("Email length over 100 characters")
+
+    @classmethod
+    def check_perfil_length(cls, perfil: str) -> bool:
+        if len(perfil) > 100:
+            raise Exception("Perfil length over 20 characters")
+
+    @classmethod
+    def check_senha_length(cls, senha: str) -> bool:
+        if len(senha) < 6:
+            raise Exception("Senha length must at least 6 characters")
 
     @classmethod
     def check_email(cls, email: str) -> bool:
