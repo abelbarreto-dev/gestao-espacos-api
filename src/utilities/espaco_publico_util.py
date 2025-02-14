@@ -10,12 +10,12 @@ class EspacoPublicoUtil:
         cls.check_capacidade_length(espaco_publico.capacidade)
 
     @classmethod
-    def check_nome_length(cls, nome: str) -> bool:
+    def check_nome_length(cls, nome: str) -> None:
         if len(nome) > 100:
             raise Exception("Name length over 100 characters")
 
     @classmethod
-    def check_endereco_length(cls, endereco: str) -> bool:
+    def check_endereco_length(cls, endereco: str) -> None:
         if len(endereco) > 100:
             raise Exception("Endereco length over 100 characters")
 
