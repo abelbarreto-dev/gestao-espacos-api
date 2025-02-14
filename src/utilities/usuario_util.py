@@ -22,22 +22,22 @@ class UsuarioUtil:
             raise Exception("Email must be valid")
 
     @classmethod
-    def check_nome_length(cls, nome: str) -> bool:
+    def check_nome_length(cls, nome: str) -> None:
         if len(nome) > 100:
             raise Exception("Name length over 100 characters")
 
     @classmethod
-    def check_email_length(cls, email: str) -> bool:
+    def check_email_length(cls, email: str) -> None:
         if len(email) > 100:
             raise Exception("Email length over 100 characters")
 
     @classmethod
-    def check_perfil_length(cls, perfil: str) -> bool:
+    def check_perfil_length(cls, perfil: str) -> None:
         if len(perfil) > 100:
             raise Exception("Perfil length over 20 characters")
 
     @classmethod
-    def check_senha_length(cls, senha: str) -> bool:
+    def check_senha_length(cls, senha: str) -> None:
         if len(senha) < 6:
             raise Exception("Senha length must at least 6 characters")
 

@@ -14,7 +14,7 @@ class EspacoPublico(Base):
     id_espaco: Mapped[int] = mapped_column(primary_key=True)
 
     nome: Mapped[str] = mapped_column(String(100), nullable=False)
-    endereco: Mapped[Text] = mapped_column(String(255), nullable=False)
+    endereco: Mapped[str] = mapped_column(String(255), nullable=False)
     descricao: Mapped[str] = mapped_column(Text, nullable=True)
     capacidade: Mapped[int] = mapped_column(Integer, nullable=False)
     disponibilidade: Mapped[bool] = mapped_column(Boolean, nullable=False, default=True)
