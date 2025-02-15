@@ -26,16 +26,16 @@ class SolicitanteRepository:
 
         return all_solicitantes
 
-    def find_solicitante_by_id(self, id: int) -> Solicitante:
+    def find_solicitante_by_id(self, id: int) -> Any:
         with Session(self.engine) as session:
             solicitante = session.query(Solicitante).filter_by(id_solicitante=id).first()
 
         if not solicitante:
             raise Exception("No solicitante found")
 
-        return solicitante()
+        return solicitante
 
-    def update_solicitante_by_id(self, solicitante: Solicitante, id: int) -> Solicitante:
+    def update_solicitante_by_id(self, solicitante: Solicitante, id: int) -> Any:
         with Session(self.engine) as session:
             new_solicitante = session.query(Solicitante).filter_by(id_solicitante=id).first()
 
@@ -49,7 +49,7 @@ class SolicitanteRepository:
 
             session.commit()
 
-        return new_solicitante()
+        return new_solicitante
 
     def delete_solicitante_by_id(self, id: int) -> Any:
         with Session(self.engine) as session:

@@ -26,16 +26,16 @@ class EspacoPublicoRepository:
 
         return all_espacos_publicos
 
-    def find_espaco_publico_by_id(self, id: int) -> EspacoPublico:
+    def find_espaco_publico_by_id(self, id: int) -> Any:
         with Session(self.engine) as session:
-            espaco_publico = session.query(EspacoPublico).filter_by(id_usuario=id).first()
+            espaco_publico = session.query(EspacoPublico).filter_by(id_espaco=id).first()
 
         if not espaco_publico:
             raise Exception("Espaço Público not found")
 
-        return espaco_publico()
+        return espaco_publico
 
-    def update_espaco_publico(self, espaco_publico: EspacoPublico, id: int) -> EspacoPublico:
+    def update_espaco_publico(self, espaco_publico: EspacoPublico, id: int) -> Any:
         with Session(self.engine) as session:
             new_esp_publico = session.query(EspacoPublico).filter_by(id_espaco=id).first()
 
@@ -50,7 +50,7 @@ class EspacoPublicoRepository:
 
             session.commit()
 
-        return new_esp_publico()
+        return new_esp_publico
 
     def delete_espaco_publico_by_id(self, id: int) -> Any:
         with Session(self.engine) as session:
