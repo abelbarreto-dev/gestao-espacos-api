@@ -20,7 +20,7 @@ class Solicitacao(Base):
     id_espaco: Mapped[int] = mapped_column(ForeignKey("espacopublico.id_espaco"), nullable=False)
     id_tipo_evento: Mapped[int] = mapped_column(ForeignKey("tipoevento.id_tipo_evento"), nullable=False)
 
-    status: Mapped[int] = mapped_column(String(20), nullable=False, default="pendente")
+    status: Mapped[str] = mapped_column(String(20), nullable=False, default="pendente")
 
     data_solicitacao: Mapped[datetime] = mapped_column(DateTime, nullable=False, default=datetime.now())
 
