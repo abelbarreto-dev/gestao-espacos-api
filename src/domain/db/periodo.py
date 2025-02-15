@@ -1,7 +1,7 @@
 from datetime import datetime
 
 from sqlalchemy import DateTime, ForeignKey
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from src.domain.db.base import Base
 
@@ -15,3 +15,5 @@ class Periodo(Base):
 
     data_inicio: Mapped[datetime] = mapped_column(DateTime, nullable=False)
     data_fim: Mapped[datetime] = mapped_column(DateTime, nullable=False)
+
+    solicitacao: Mapped["Solicitacao"] = relationship(back_populates="periodo")

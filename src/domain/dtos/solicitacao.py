@@ -9,4 +9,4 @@ class Solicitacao(BaseModel):
     id_espaco: int
     id_tipo_evento: int
     status: str
-    data_solicitacao: datetime
+    data_solicitacao: datetime = None

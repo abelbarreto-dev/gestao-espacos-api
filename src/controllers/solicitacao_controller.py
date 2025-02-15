@@ -37,6 +37,6 @@ class SolicitacaoController:
 
     def delete_solicitacao_by_id(self, id: int) -> Any:
         try:
-            return self.solicit_service
+            return self.solicit_service.delete_solicitacao_by_id(id)
         except Exception as ex:
             raise HTTPError(str(ex))

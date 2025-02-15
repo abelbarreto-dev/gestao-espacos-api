@@ -24,6 +24,11 @@ class Solicitacao(Base):
 
     data_solicitacao: Mapped[datetime] = mapped_column(DateTime, nullable=False, default=datetime.now())
 
-    periodo: Mapped[List[Periodo]] = relationship()
-    autorizacao: Mapped[List[Autorizacao]] = relationship()
-    historico: Mapped[List[Historico]] = relationship()
+    periodo: Mapped[List["Periodo"]] = relationship(back_populates="solicitacao", cascade="all, delete-orphan")
+    autorizacao: Mapped[List["Autorizacao"]] = relationship(back_populates="solicitacao", cascade="all, delete-orphan")
+    historico: Mapped[List["Historico"]] = relationship(back_populates="solicitacao", cascade="all, delete-orphan")
+
+    solicitante: Mapped["Solicitante"] = relationship(back_populates="solicitacao")
+    usuario: Mapped["Usuario"] = relationship(back_populates="solicitacao")
+    espacopublico: Mapped["EspacoPublico"] = relationship(back_populates="solicitacao")
+    tipoevento: Mapped["TipoEvento"] = relationship(back_populates="solicitacao")

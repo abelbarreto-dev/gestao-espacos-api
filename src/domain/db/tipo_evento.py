@@ -14,4 +14,4 @@ class TipoEvento(Base):
 
     descricao: Mapped[str] = mapped_column(String(100), nullable=True, unique=True)
 
-    solicitacao: Mapped[List[Solicitacao]] = relationship()
+    solicitacao: Mapped[List["Solicitacao"]] = relationship(back_populates="tipoevento", cascade="all, delete-orphan")

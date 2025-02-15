@@ -19,4 +19,4 @@ class EspacoPublico(Base):
     capacidade: Mapped[int] = mapped_column(Integer, nullable=False)
     disponibilidade: Mapped[bool] = mapped_column(Boolean, nullable=False, default=True)
 
-    solicitacao: Mapped[List[Solicitacao]] = relationship()
+    solicitacao: Mapped[List["Solicitacao"]] = relationship(back_populates="espacopublico")

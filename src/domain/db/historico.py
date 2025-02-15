@@ -1,7 +1,8 @@
 from sqlalchemy import String, Text, ForeignKey
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from src.domain.db.base import Base
+from src.domain.db.usuario import Usuario
 
 
 class Historico(Base):
@@ -16,3 +17,6 @@ class Historico(Base):
 
     valor_anterior: Mapped[str] = mapped_column(Text, nullable=False)
     valor_novo: Mapped[str] = mapped_column(Text, nullable=False)
+
+    solicitacao: Mapped["Solicitacao"] = relationship(back_populates="historico")
+    usuario: Mapped["Usuario"] = relationship(back_populates="historico")
