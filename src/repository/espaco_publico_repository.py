@@ -21,6 +21,9 @@ class EspacoPublicoRepository:
         with Session(self.engine) as session:
             all_espacos_publicos = session.query(EspacoPublico).all()
 
+        if not all_espacos_publicos:
+            raise Exception("Espaço Público not found")
+
         return all_espacos_publicos
 
     def find_espaco_publico_by_id(self, id: int) -> EspacoPublico:
@@ -28,7 +31,7 @@ class EspacoPublicoRepository:
             espaco_publico = session.query(EspacoPublico).filter_by(id_usuario=id).first()
 
         if not espaco_publico:
-            raise Exception("Espaco Publico not found")
+            raise Exception("Espaço Público not found")
 
         return espaco_publico()
 
