@@ -1,4 +1,4 @@
-from typing import Any
+from typing import Any, Optional
 
 from fastapi import APIRouter
 
@@ -23,6 +23,11 @@ def find_all_espaco_publicos() -> Any:
 @espaco_publico_routes.get("/espacos-publicos/{id}")
 def find_espaco_publico_by_id(id: int) -> Any:
     return esp_pub_controller.find_espaco_publico_by_id(id)
+
+
+@espaco_publico_routes.get("/espacos-publicos/filter")
+def filter_espaco_publico_by_disponibilidade(disponibilidade: Optional[bool] = None) -> Any:
+    return esp_pub_controller.filter_espaco_publico_by_disponibilidade(disponibilidade)
 
 
 @espaco_publico_routes.put("/espacos-publicos/{id}")

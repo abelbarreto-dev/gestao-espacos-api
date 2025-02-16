@@ -24,6 +24,14 @@ class SolicitacaoService:
     def find_solicitacao_by_id(self, id: int) -> Any:
         return self.solicit_repo.find_solicitacao_by_id(id)
 
+    def filter_solicitacao_by_status(self, status: str) -> List:
+        SolicitacaoUtil.check_status(status)
+
+        return self.solicit_repo.find_solicitacao_by_status(status)
+
+    def filter_solicitacao_by_solicitante_id(self, solicitante_id: int) -> List:
+        return self.solicit_repo.filter_solicitacao_by_solicitante_id(solicitante_id)
+
     def update_solicitacao(self, solicitacao: SolicitacaoDB, id: int) -> Any:
         SolicitacaoUtil.check_all(solicitacao)
 

@@ -1,4 +1,4 @@
-from typing import Any
+from typing import Any, Optional
 
 from fastapi import APIRouter
 
@@ -23,6 +23,17 @@ def find_all_solicitacaos() -> Any:
 @solicitacao_routes.get("/solicitacoes/{id}")
 def find_solicitacao_by_id(id: int) -> Any:
     return solicit_controller.find_solicitacao_by_id(id)
+
+
+@solicitacao_routes.get("/solicitacoes/filter")
+def filter_solicitacao_by_status(
+        status: Optional[str] = None,
+        solicitante_id: Optional[int] = None
+) -> Any:
+    return solicit_controller.filter_solicitacao_by_status_or_solicitante_id(
+        status,
+        solicitante_id
+    )
 
 
 @solicitacao_routes.put("/solicitacoes/{id}")

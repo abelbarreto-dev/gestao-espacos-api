@@ -22,6 +22,9 @@ class EspacoPublicoService:
     def find_espaco_publico_by_id(self, id: int) -> EspacoDB:
         return self.esp_pub_repo.find_espaco_publico_by_id(id)
 
+    def filter_espaco_publico_by_disponibilidade(self, disponibilidade: bool) -> List:
+        return self.esp_pub_repo.filter_espaco_publico_by_disponibilidade(disponibilidade)
+
     def update_espaco_publico(self, espaco_publico: EspacoDB, id: int) -> EspacoDB:
         EspacoPublicoUtil.check_all(espaco_publico)
 

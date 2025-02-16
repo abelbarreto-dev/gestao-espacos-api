@@ -35,6 +35,24 @@ class SolicitacaoRepository:
 
         return solicitacao
 
+    def find_solicitacao_by_status(self, status: str) -> List:
+        with Session(self.engine) as session:
+            solicitacoes = session.query(Solicitacao).filter_by(status=status).all()
+
+            if not solicitacoes:
+                raise Exception("Any Solicitacao Not Found")
+
+        return solicitacoes
+
+    def filter_solicitacao_by_solicitante_id(self, solicitante_id: int) -> List:
+        with Session(self.engine) as session:
+            solicitacoes = session.query(Solicitacao).filter_by(id_solicitante=solicitante_id).all()
+
+            if not solicitacoes:
+                raise Exception("Any Solicitacao Not Found")
+
+        return solicitacoes
+
     def update_solicitacao(self, solicitacao: Solicitacao, id: int) -> Any:
         with Session(self.engine) as session:
             new_solicitacao = session.query(Solicitacao).filter_by(id_solicitacao=id).first()

@@ -1,4 +1,4 @@
-from typing import Any
+from typing import Any, Optional
 
 from fastapi import APIRouter
 
@@ -22,6 +22,11 @@ def find_all_historicos() -> Any:
 @story_routes.get("/historico-solicitacoes/{id}")
 def find_historico_by_id(id: int) -> Any:
     return story_controller.find_historico_by_id(id)
+
+
+@story_routes.put("/historico-solicitacoes/filter")
+def filter_historico_by_solicitacao_id(self, solicitacao_id: Optional[int] = None) -> Any:
+    return story_controller.filter_historico_by_solicitacao_id(solicitacao_id)
 
 
 @story_routes.put("/historico-solicitacoes/{id}")

@@ -28,6 +28,15 @@ class HistoricoController:
         except Exception as ex:
             raise HTTPError(str(ex))
 
+    def filter_historico_by_solicitacao_id(self, solicitacao_id: Optional[int] = None) -> Any:
+        try:
+            if solicitacao_id is None:
+                raise Exception("Solicitacao Id is Required")
+
+            return self.story_service.filter_historico_by_solicitacao_id(solicitacao_id)
+        except Exception as ex:
+            raise HTTPError(str(ex))
+
     def update_historico(self, historico: dict, id: int) -> Any:
         try:
             story_db = HistoricoDB(**historico)

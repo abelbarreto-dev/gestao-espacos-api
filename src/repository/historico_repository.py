@@ -35,6 +35,15 @@ class HistoricoRepository:
 
         return historico
 
+    def filter_historico_by_solicitacao_id(self, solicitacao_id: int) -> List:
+        with Session(self.engine) as session:
+            historicos = session.query(Historico).filter_by(id_solicitacao=solicitacao_id).all()
+
+            if not historicos:
+                raise Exception("Any Historico Not Found")
+
+        return historicos
+
     def update_historico(self, historico: Historico, id: int) -> Any:
         with Session(self.engine) as session:
             new_historico = session.query(Historico).filter_by(id_historico=id).first()

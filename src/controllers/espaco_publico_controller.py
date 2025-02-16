@@ -28,6 +28,17 @@ class EspacoPublicoController:
         except Exception as ex:
             raise HTTPError(str(ex))
 
+    def filter_espaco_publico_by_disponibilidade(self, disponibilidade: Optional[bool] = None) -> Any:
+        try:
+            if disponibilidade is None:
+                raise Exception("Disponibilidade is Required")
+
+            available = bool(disponibilidade)
+
+            return self.esp_pub_service.filter_espaco_publico_by_disponibilidade(available)
+        except Exception as ex:
+            raise HTTPError(str(ex))
+
     def update_espaco_publico(self, espaco_publico: dict, id: int) -> Any:
         try:
             espaco_db = EspacoDB(**espaco_publico)

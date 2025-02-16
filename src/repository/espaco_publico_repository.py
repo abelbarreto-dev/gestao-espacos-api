@@ -35,6 +35,15 @@ class EspacoPublicoRepository:
 
         return espaco_publico
 
+    def filter_espaco_publico_by_disponibilidade(self, disponibilidade: bool) -> List:
+        with Session(self.engine) as session:
+            espacos = session.query(EspacoPublico).filter_by(disponibilidade=disponibilidade).all()
+
+            if not espacos:
+                raise Exception("Any Espaço Público Not Found")
+
+        return espacos
+
     def update_espaco_publico(self, espaco_publico: EspacoPublico, id: int) -> Any:
         with Session(self.engine) as session:
             new_esp_publico = session.query(EspacoPublico).filter_by(id_espaco=id).first()
