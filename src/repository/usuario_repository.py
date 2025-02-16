@@ -19,6 +19,15 @@ class UsuarioRepository:
 
         return new_user
 
+    def find_user_by_id(self, id: int) -> Any:
+        with Session(self.engine) as session:
+            user = session.query(Usuario).filter_by(id_usuario=id).first()
+
+        if not user:
+            raise Exception(f"Usuario ID={id} Not Found")
+
+        return user
+
     def find_user_make_login(self, login: LoginDto) -> Any:
         with Session(self.engine) as session:
             user = session.query(Usuario).filter_by(email=login.email, senha=login.senha).first()

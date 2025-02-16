@@ -28,6 +28,16 @@ class UsuarioService:
 
         return new_user
 
+    def find_user_by_id(self, id: int) -> Any:
+        user = self.user_repo.find_user_by_id(id)
+
+        new_user = UsuarioUtil.from_db_to_base_model(user)
+
+        new_user.email = ""
+        new_user.senha = ""
+
+        return new_user
+
     def update_user_nome(self, nome: str, id: int) -> Any:
         UsuarioUtil.check_nome_length(nome)
 

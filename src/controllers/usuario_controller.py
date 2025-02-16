@@ -27,6 +27,14 @@ class UsuarioController:
         except Exception as e:
             raise HTTPError(str(e))
 
+    def find_user_by_id(self, id: int) -> Any:
+        try:
+            user = self.user_service.find_user_by_id(id)
+
+            return response_builder(data=user.model_dump())
+        except Exception as e:
+            raise HTTPError(str(e))
+
     def update_user_nome(self, nome: str, id: int) -> Any:
         try:
             return self.user_service.update_user_nome(nome, id)

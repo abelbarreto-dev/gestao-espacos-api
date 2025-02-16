@@ -23,6 +23,11 @@ def find_user_make_login(login: LoginDto) -> Any:
     return user_controller.find_user_make_login(login)
 
 
+@usuario_routes.get("/usuarios/{id}")
+def find_user_by_id(id: int) -> Any:
+    return user_controller.find_user_by_id(id)
+
+
 @usuario_routes.patch("/usuarios/update-nome/{id}")
 def update_user_nome(nome: NomeDto, id: int) -> Any:
     return user_controller.update_user_nome(nome.nome, id)
