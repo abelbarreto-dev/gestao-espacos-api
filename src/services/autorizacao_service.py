@@ -14,18 +14,30 @@ class AutorizacaoService:
         AutorizacaoUtil.check_all(autorizacao)
 
         autorizacao_db = AutorizacaoUtil.to_autorizacao_db(autorizacao)
-        return self.auth_repo.create_autorizacao(autorizacao_db)
+        autorizacao_db = self.auth_repo.create_autorizacao(autorizacao_db)
+
+        response = AutorizacaoUtil.from_db_to_base_model(autorizacao_db)
+        return response
 
     def find_all_autorizacaos(self) -> List:
-        return self.auth_repo.find_all_autorizacaos()
+        all_autorize = self.auth_repo.find_all_autorizacaos()
+
+        response = AutorizacaoUtil.from_db_list_to_base_model(all_autorize)
+        return response
 
     def find_autorizacao_by_id(self, id: int) -> Any:
-        return self.auth_repo.find_autorizacao_by_id(id)
+        autorizacao = self.auth_repo.find_autorizacao_by_id(id)
+
+        response = AutorizacaoUtil.from_db_to_base_model(autorizacao)
+        return response
 
     def update_autorizacao(self, autorizacao: AutorizacaoDB, id: int) -> Any:
         AutorizacaoUtil.check_all(autorizacao)
 
-        return self.auth_repo.update_autorizacao(autorizacao, id)
+        autorizacao = self.auth_repo.update_autorizacao(autorizacao, id)
+
+        response = AutorizacaoUtil.from_db_to_base_model(autorizacao)
+        return response
 
     def delete_autorizacao_by_id(self, id: int) -> Any:
         return self.auth_repo.delete_autorizacao_by_id(id)

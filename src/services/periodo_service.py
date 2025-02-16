@@ -14,18 +14,30 @@ class PeriodoService:
         PeriodoUtil.check_all(periodo)
 
         periodo_db = PeriodoUtil.to_periodo_db(periodo)
-        return self.periodo_repo.create_periodo(periodo_db)
+        periodo_db = self.periodo_repo.create_periodo(periodo_db)
+
+        response = PeriodoUtil.from_db_to_base_model(periodo_db)
+        return response
 
     def find_all_periodos(self) -> List:
-        return self.periodo_repo.find_all_periodos()
+        all_periodos = self.periodo_repo.find_all_periodos()
+
+        response = PeriodoUtil.from_db_list_to_base_model(all_periodos)
+        return response
 
     def find_periodo_by_id(self, id: int) -> Any:
-        return self.periodo_repo.find_periodo_by_id(id)
+        seacon = self.periodo_repo.find_periodo_by_id(id)
+
+        response = PeriodoUtil.from_db_to_base_model(seacon)
+        return response
 
     def update_periodo(self, periodo: PeriodoDB, id: int) -> Any:
         PeriodoUtil.check_all(periodo)
 
-        return self.periodo_repo.update_periodo(periodo, id)
+        seacon = self.periodo_repo.update_periodo(periodo, id)
+
+        response = PeriodoUtil.from_db_to_base_model(seacon)
+        return response
 
     def delete_periodo_by_id(self, id: int) -> Any:
         return self.periodo_repo.delete_periodo_by_id(id)

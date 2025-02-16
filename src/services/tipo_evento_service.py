@@ -14,18 +14,30 @@ class TipoEventoService:
         TipoEventoUtil.check_all(tipo_evento)
 
         new_tipo_evento = TipoEventoUtil.to_tipo_evento_db(tipo_evento)
-        return self.tipo_evento_repo.create_tipo_evento(new_tipo_evento)
+        new_tipo_evento = self.tipo_evento_repo.create_tipo_evento(new_tipo_evento)
+
+        response = TipoEventoUtil.from_db_to_base_model(new_tipo_evento)
+        return response
 
     def find_all_tipo_eventos(self) -> List:
-        return self.tipo_evento_repo.find_all_tipo_eventos()
+        all_eventos = self.tipo_evento_repo.find_all_tipo_eventos()
+
+        response = TipoEventoUtil.from_db_list_to_base_model(all_eventos)
+        return response
 
     def find_tipo_evento_by_id(self, id: int) -> TipoEventoDB:
-        return self.tipo_evento_repo.find_tipo_evento_by_id(id)
+        tipo_evento = self.tipo_evento_repo.find_tipo_evento_by_id(id)
+
+        response = TipoEventoUtil.from_db_to_base_model(tipo_evento)
+        return response
 
     def update_tipo_evento(self, tipo_evento: TipoEventoDB, id: int) -> TipoEventoDB:
         TipoEventoUtil.check_all(tipo_evento)
 
-        return self.tipo_evento_repo.update_tipo_evento(tipo_evento, id)
+        tipo_evento = self.tipo_evento_repo.update_tipo_evento(tipo_evento, id)
+
+        response = TipoEventoUtil.from_db_to_base_model(tipo_evento)
+        return response
 
     def delete_tipo_evento_by_id(self, id: int) -> Any:
         return self.tipo_evento_repo.delete_tipo_evento_by_id(id)
