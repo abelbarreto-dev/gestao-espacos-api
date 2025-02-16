@@ -1,34 +1,30 @@
-from typing import List, Any
+from typing import Any
 
 from sqlalchemy.orm import Session
 
 from src.core.sql_engine import sync_engine
 from src.domain.db.usuario import Usuario
+from src.domain.dtos.extra.login_dto import LoginDto
 
 
 class UsuarioRepository:
     def __init__(self):
         self.engine = sync_engine()
 
-    def create_user(self, user: Usuario) -> Usuario:
+    def create_user(self, user: Usuario) -> Any:
         with Session(self.engine) as session:
             session.add(user)
             session.commit()
+            new_user = session.query(Usuario).filter_by(email=user.email).first()
 
-        return user
+        return new_user
 
-    def find_all_users(self) -> List:
+    def find_user_make_login(self, login: LoginDto) -> Any:
         with Session(self.engine) as session:
-            all_users = session.query(Usuario).all()
+            user = session.query(Usuario).filter_by(email=login.email, senha=login.senha).first()
 
-        if not all_users:
-            raise Exception("Usuario not found")
-
-        return all_users
-
-    def find_user_by_id(self, id: int) -> Any:
-        with Session(self.engine) as session:
-            user = session.query(Usuario).filter_by(id_usuario=id).first()
+        if not user:
+            raise Exception("Usuario Not Found: Login Failed")
 
         return user
 

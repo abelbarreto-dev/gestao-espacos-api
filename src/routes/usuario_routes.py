@@ -18,14 +18,9 @@ def create_user(user: Usuario) -> Any:
     return user_controller.create_user(user)
 
 
-@usuario_routes.get("/usuarios")
-def find_all_users() -> Any:
-    return user_controller.find_all_users()
-
-
-@usuario_routes.get("/usuarios/{id}")
-def find_user_by_id(id: int) -> Any:
-    return user_controller.find_user_by_id(id)
+@usuario_routes.get("/usuarios/login")
+def find_user_make_login(login: LoginDto) -> Any:
+    return user_controller.find_user_make_login(login)
 
 
 @usuario_routes.patch("/usuarios/update-nome/{id}")

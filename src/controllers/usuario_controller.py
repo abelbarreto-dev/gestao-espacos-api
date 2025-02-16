@@ -1,7 +1,9 @@
 from typing import Any
 
+from src.domain.dtos.extra.login_dto import LoginDto
 from src.domain.dtos.usuario import Usuario
 from src.exceptions.http_exception import HTTPError
+from src.response.response import response_builder
 from src.services.usuario_service import UsuarioService
 
 
@@ -11,19 +13,17 @@ class UsuarioController:
 
     def create_user(self, user: Usuario) -> Any:
         try:
-            return self.user_service.create_user(user)
+            new_user = self.user_service.create_user(user)
+
+            return response_builder(data=new_user.model_dump())
         except Exception as e:
             raise HTTPError(str(e))
 
-    def find_all_users(self) -> Any:
+    def find_user_make_login(self, login: LoginDto) -> Any:
         try:
-            return self.user_service.find_all_users()
-        except Exception as e:
-            raise HTTPError(str(e))
+            user = self.user_service.find_user_make_login(login)
 
-    def find_user_by_id(self, id: int) -> Any:
-        try:
-            return self.user_service.find_user_by_id(id)
+            return response_builder(data=user.model_dump())
         except Exception as e:
             raise HTTPError(str(e))
 
