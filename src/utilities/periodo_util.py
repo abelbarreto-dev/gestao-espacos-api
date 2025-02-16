@@ -2,6 +2,7 @@ from datetime import datetime
 
 from src.domain.db.periodo import Periodo as PeriodoDB
 from src.domain.dtos.periodo import Periodo
+from src.domain.responses.periodo import Periodo as PeriodoResponse
 
 
 class PeriodoUtil:
@@ -23,3 +24,12 @@ class PeriodoUtil:
         periodo_db.data_fim = periodo.data_fim
 
         return periodo_db
+
+    @classmethod
+    def from_db_to_base_model(cls, periodo_db: PeriodoDB) -> PeriodoResponse:
+        return PeriodoResponse(
+            id_periodo=periodo_db.id_periodo,
+            id_solicitacao=periodo_db.id_solicitacao,
+            data_inicio=periodo_db.data_inicio,
+            data_fim=periodo_db.data_fim
+        )

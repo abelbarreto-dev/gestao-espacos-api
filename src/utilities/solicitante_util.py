@@ -1,5 +1,6 @@
 from src.domain.db.solicitante import Solicitante as SolicitanteDB
 from src.domain.dtos.solicitante import Solicitante
+from src.domain.responses.solicitante import Solicitante as SolicitanteResponse
 
 
 class SolicitanteUtil:
@@ -47,3 +48,13 @@ class SolicitanteUtil:
         solicit_db.contato = solicitante.contato
 
         return solicit_db
+
+    @classmethod
+    def from_db_to_base_model(cls, solicitante: SolicitanteDB) -> SolicitanteResponse:
+        return SolicitanteResponse(
+            id_solicitante=solicitante.id_solicitante,
+            nome=solicitante.nome,
+            tipo=solicitante.tipo,
+            documento=solicitante.documento,
+            contato=solicitante.contato,
+        )

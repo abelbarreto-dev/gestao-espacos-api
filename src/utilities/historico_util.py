@@ -2,6 +2,7 @@ from datetime import datetime
 
 from src.domain.db.historico import Historico as HistoricoDB
 from src.domain.dtos.historico import Historico
+from src.domain.responses.historico import Historico as HistoricoResponse
 
 
 class HistoricoUtil:
@@ -32,3 +33,14 @@ class HistoricoUtil:
         story.data_modificacao = historico.data_modificacao
 
         return story
+
+    @classmethod
+    def from_db_to_base_model(cls, historico_db: HistoricoDB) -> HistoricoResponse:
+        return HistoricoResponse(
+            id_historico=historico_db.id_historico,
+            id_solicitacao=historico_db.id_solicitacao,
+            usuario_responsavel=historico_db.usuario_responsavel,
+            campo_modificado=historico_db.campo_modificado,
+            valor_anterior=historico_db.valor_anterior,
+            valor_novo=historico_db.valor_novo,
+        )

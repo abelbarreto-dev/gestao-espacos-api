@@ -1,5 +1,6 @@
 from src.domain.db.tipo_evento import TipoEvento as TipoEventoDB
 from src.domain.dtos.tipo_evento import TipoEvento
+from src.domain.responses.tipo_evento import TipoEvento as TipoEventoResponse
 
 
 class TipoEventoUtil:
@@ -19,3 +20,10 @@ class TipoEventoUtil:
         tipo_ev_db.descricao = tipo_evento.descricao
 
         return tipo_ev_db
+
+    @classmethod
+    def from_db_to_base_model(cls, tipo_evento: TipoEventoDB) -> TipoEventoResponse:
+        return TipoEventoResponse(
+            id_tipo_evento=tipo_evento.id_tipo_evento,
+            descricao=tipo_evento.descricao
+        )

@@ -1,5 +1,6 @@
 from src.domain.db.espaco_publico import EspacoPublico as EspacoDB
 from src.domain.dtos.espaco_publico import EspacoPublico
+from src.domain.responses.espaco_publico import EspacoPublico as ResponseEspaco
 
 
 class EspacoPublicoUtil:
@@ -35,3 +36,14 @@ class EspacoPublicoUtil:
         espaco_db.disponibilidade = espaco_publico.disponibilidade
 
         return espaco_db
+
+    @classmethod
+    def from_db_to_base_model(cls, espaco_publico: EspacoDB) -> ResponseEspaco:
+        return ResponseEspaco(
+            id_espaco=espaco_publico.id_espaco,
+            nome=espaco_publico.nome,
+            endereco=espaco_publico.endereco,
+            capacidade=espaco_publico.capacidade,
+            disponibilidade=espaco_publico.disponibilidade,
+            descricao=espaco_publico.descricao
+        )

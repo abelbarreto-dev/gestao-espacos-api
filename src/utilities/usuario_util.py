@@ -2,6 +2,7 @@ from re import match
 
 from src.domain.dtos.usuario import Usuario
 from src.domain.db.usuario import Usuario as UserDB
+from src.domain.responses.usuario import Usuario as UsuarioResponse
 
 
 regex_email = r"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"
@@ -57,3 +58,13 @@ class UsuarioUtil:
         user_db.senha = user.senha
 
         return user_db
+
+    @classmethod
+    def from_db_to_base_model(cls, usuario: UserDB) -> UsuarioResponse:
+        return UsuarioResponse(
+            id_usuario=usuario.id_usuario,
+            nome=usuario.nome,
+            email=usuario.email,
+            senha=usuario.senha,
+            perfil=usuario.perfil
+        )

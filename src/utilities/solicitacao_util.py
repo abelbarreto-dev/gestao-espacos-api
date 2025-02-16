@@ -1,5 +1,6 @@
 from src.domain.db.solicitacao import Solicitacao as SolicitacaoDB
 from src.domain.dtos.solicitacao import Solicitacao
+from src.domain.responses.solicitacao import Solicitacao as SolicitacaoResponse
 
 
 class SolicitacaoUtil:
@@ -24,3 +25,14 @@ class SolicitacaoUtil:
         solicit_db.data_solicitacao = solicitacao.data_solicitacao
 
         return solicit_db
+
+    @classmethod
+    def from_db_to_base_model(cls, solicia_db: SolicitacaoDB) -> SolicitacaoResponse:
+        return SolicitacaoResponse(
+            id_solicitacao=solicia_db.id_solicitante,
+            id_solicitante=solicia_db.id_solicitante,
+            id_usuario=solicia_db.id_usuario,
+            id_espaco=solicia_db.id_espaco,
+            id_tipo_evento=solicia_db.id_tipo_evento,
+            status=solicia_db.status
+        )

@@ -2,6 +2,7 @@ from datetime import date
 
 from src.domain.db.autorizacao import Autorizacao as AutorizacaoDB
 from src.domain.dtos.autorizacao import Autorizacao
+from src.domain.responses.autorizacao import Autorizacao as AutorizacaoResponse
 
 
 class AutorizacaoUtil:
@@ -24,3 +25,12 @@ class AutorizacaoUtil:
         author_db.validade = autorizacao.validade
 
         return author_db
+
+    @classmethod
+    def from_db_to_base_model(cls, autorizacao: AutorizacaoDB) -> AutorizacaoResponse:
+        return AutorizacaoResponse(
+            id_autorizacao=autorizacao.id_autorizacao,
+            id_solicitacao=autorizacao.id_solicitacao,
+            data_emissao=autorizacao.data_emissao,
+            validade=autorizacao.validade
+        )
