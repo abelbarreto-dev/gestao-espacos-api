@@ -1,3 +1,5 @@
+from typing import List
+
 from src.domain.db.tipo_evento import TipoEvento as TipoEventoDB
 from src.domain.dtos.tipo_evento import TipoEvento
 from src.domain.responses.tipo_evento import TipoEvento as TipoEventoResponse
@@ -27,3 +29,10 @@ class TipoEventoUtil:
             id_tipo_evento=tipo_evento.id_tipo_evento,
             descricao=tipo_evento.descricao
         )
+
+    @classmethod
+    def from_db_list_to_base_model(cls, tipo_eventos: List[TipoEventoDB]) -> List[TipoEventoResponse]:
+        return [
+            cls.to_tipo_evento_db(evento)
+            for evento in tipo_eventos
+        ]

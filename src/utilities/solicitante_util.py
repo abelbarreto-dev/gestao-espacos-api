@@ -1,3 +1,5 @@
+from typing import List
+
 from src.domain.db.solicitante import Solicitante as SolicitanteDB
 from src.domain.dtos.solicitante import Solicitante
 from src.domain.responses.solicitante import Solicitante as SolicitanteResponse
@@ -58,3 +60,10 @@ class SolicitanteUtil:
             documento=solicitante.documento,
             contato=solicitante.contato,
         )
+
+    @classmethod
+    def from_db_list_to_base_model(cls, solicitantes: List[SolicitanteDB]) -> List[SolicitanteResponse]:
+        return [
+            cls.from_db_to_base_model(solicit)
+            for solicit in solicitantes
+        ]

@@ -1,4 +1,5 @@
 from datetime import datetime
+from typing import List
 
 from src.domain.db.periodo import Periodo as PeriodoDB
 from src.domain.dtos.periodo import Periodo
@@ -33,3 +34,10 @@ class PeriodoUtil:
             data_inicio=periodo_db.data_inicio,
             data_fim=periodo_db.data_fim
         )
+
+    @classmethod
+    def from_db_list_to_base_model(cls, periodos: List[Periodo]) -> List[PeriodoResponse]:
+        return [
+            cls.from_db_to_base_model(season)
+            for season in periodos
+        ]

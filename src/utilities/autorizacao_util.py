@@ -1,4 +1,5 @@
 from datetime import date
+from typing import List
 
 from src.domain.db.autorizacao import Autorizacao as AutorizacaoDB
 from src.domain.dtos.autorizacao import Autorizacao
@@ -34,3 +35,10 @@ class AutorizacaoUtil:
             data_emissao=autorizacao.data_emissao,
             validade=autorizacao.validade
         )
+
+    @classmethod
+    def from_db_list_to_base_model(cls, autorizacoes: List[Autorizacao]) -> List[AutorizacaoResponse]:
+        return [
+            cls.to_autorizacao_db(autorizacao)
+            for autorizacao in autorizacoes
+        ]

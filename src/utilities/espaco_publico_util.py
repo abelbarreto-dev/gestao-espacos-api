@@ -1,3 +1,5 @@
+from typing import List
+
 from src.domain.db.espaco_publico import EspacoPublico as EspacoDB
 from src.domain.dtos.espaco_publico import EspacoPublico
 from src.domain.responses.espaco_publico import EspacoPublico as ResponseEspaco
@@ -47,3 +49,10 @@ class EspacoPublicoUtil:
             disponibilidade=espaco_publico.disponibilidade,
             descricao=espaco_publico.descricao
         )
+
+    @classmethod
+    def from_db_list_to_base_model(cls, espacos_publicos: List[EspacoDB]) -> List[ResponseEspaco]:
+        return [
+            cls.to_espaco_publico_db(espaco)
+            for espaco in espacos_publicos
+        ]

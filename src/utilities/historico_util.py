@@ -1,4 +1,5 @@
 from datetime import datetime
+from typing import List
 
 from src.domain.db.historico import Historico as HistoricoDB
 from src.domain.dtos.historico import Historico
@@ -44,3 +45,10 @@ class HistoricoUtil:
             valor_anterior=historico_db.valor_anterior,
             valor_novo=historico_db.valor_novo,
         )
+
+    @classmethod
+    def from_db_list_to_base_model(cls, historicos: List[HistoricoDB]) -> List[HistoricoResponse]:
+        return [
+            cls.from_db_to_base_model(story)
+            for story in historicos
+        ]

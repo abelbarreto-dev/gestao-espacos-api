@@ -1,3 +1,5 @@
+from typing import List
+
 from src.domain.db.solicitacao import Solicitacao as SolicitacaoDB
 from src.domain.dtos.solicitacao import Solicitacao
 from src.domain.responses.solicitacao import Solicitacao as SolicitacaoResponse
@@ -36,3 +38,10 @@ class SolicitacaoUtil:
             id_tipo_evento=solicia_db.id_tipo_evento,
             status=solicia_db.status
         )
+
+    @classmethod
+    def from_db_list_to_base_model(cls, solicias_db: List[SolicitacaoDB]) -> List[SolicitacaoResponse]:
+        return [
+            cls.to_solicitacao_db(solicit)
+            for solicit in solicias_db
+        ]
