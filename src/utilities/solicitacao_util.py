@@ -42,6 +42,6 @@ class SolicitacaoUtil:
     @classmethod
     def from_db_list_to_base_model(cls, solicias_db: List[SolicitacaoDB]) -> List[SolicitacaoResponse]:
         return [
-            cls.to_solicitacao_db(solicit)
+            cls.from_db_to_base_model(solicit).model_dump()
             for solicit in solicias_db
         ]

@@ -64,6 +64,6 @@ class SolicitanteUtil:
     @classmethod
     def from_db_list_to_base_model(cls, solicitantes: List[SolicitanteDB]) -> List[SolicitanteResponse]:
         return [
-            cls.from_db_to_base_model(solicit)
+            cls.from_db_to_base_model(solicit).model_dump()
             for solicit in solicitantes
         ]

@@ -33,6 +33,6 @@ class TipoEventoUtil:
     @classmethod
     def from_db_list_to_base_model(cls, tipo_eventos: List[TipoEventoDB]) -> List[TipoEventoResponse]:
         return [
-            cls.to_tipo_evento_db(evento)
+            cls.from_db_to_base_model(evento).model_dump()
             for evento in tipo_eventos
         ]

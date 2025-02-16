@@ -49,6 +49,6 @@ class HistoricoUtil:
     @classmethod
     def from_db_list_to_base_model(cls, historicos: List[HistoricoDB]) -> List[HistoricoResponse]:
         return [
-            cls.from_db_to_base_model(story)
+            cls.from_db_to_base_model(story).model_dump()
             for story in historicos
         ]

@@ -38,6 +38,6 @@ class PeriodoUtil:
     @classmethod
     def from_db_list_to_base_model(cls, periodos: List[Periodo]) -> List[PeriodoResponse]:
         return [
-            cls.from_db_to_base_model(season)
+            cls.from_db_to_base_model(season).model_dump()
             for season in periodos
         ]

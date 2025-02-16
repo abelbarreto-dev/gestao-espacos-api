@@ -53,6 +53,6 @@ class EspacoPublicoUtil:
     @classmethod
     def from_db_list_to_base_model(cls, espacos_publicos: List[EspacoDB]) -> List[ResponseEspaco]:
         return [
-            cls.to_espaco_publico_db(espaco)
+            cls.from_db_to_base_model(espaco)
             for espaco in espacos_publicos
         ]

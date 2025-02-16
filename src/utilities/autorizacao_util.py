@@ -39,6 +39,6 @@ class AutorizacaoUtil:
     @classmethod
     def from_db_list_to_base_model(cls, autorizacoes: List[Autorizacao]) -> List[AutorizacaoResponse]:
         return [
-            cls.to_autorizacao_db(autorizacao)
+            cls.from_db_to_base_model(autorizacao)
             for autorizacao in autorizacoes
         ]
