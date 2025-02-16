@@ -1,5 +1,5 @@
 from datetime import datetime
-from typing import List, Any
+from typing import Any
 
 from src.domain.db.solicitacao import Solicitacao as SolicitacaoDB
 from src.domain.dtos.solicitacao import Solicitacao
@@ -21,7 +21,7 @@ class SolicitacaoService:
         response = SolicitacaoUtil.from_db_to_base_model(new_solicitacao)
         return response
 
-    def find_all_solicitacaos(self) -> List:
+    def find_all_solicitacaos(self) -> Any:
         all_solicits = self.solicit_repo.find_all_solicitacaos()
 
         response = SolicitacaoUtil.from_db_list_to_base_model(all_solicits)
@@ -33,7 +33,7 @@ class SolicitacaoService:
         response = SolicitacaoUtil.from_db_to_base_model(solicit)
         return response
 
-    def filter_solicitacao_by_status(self, status: str) -> List:
+    def filter_solicitacao_by_status(self, status: str) -> Any:
         SolicitacaoUtil.check_status(status)
 
         solicit = self.solicit_repo.find_solicitacao_by_status(status)
@@ -41,7 +41,7 @@ class SolicitacaoService:
         response = SolicitacaoUtil.from_db_list_to_base_model(solicit)
         return response
 
-    def filter_solicitacao_by_solicitante_id(self, solicitante_id: int) -> List:
+    def filter_solicitacao_by_solicitante_id(self, solicitante_id: int) -> Any:
         solicit = self.solicit_repo.filter_solicitacao_by_solicitante_id(solicitante_id)
 
         response = SolicitacaoUtil.from_db_list_to_base_model(solicit)

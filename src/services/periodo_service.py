@@ -1,4 +1,4 @@
-from typing import List, Any
+from typing import Any
 
 from src.domain.db.periodo import Periodo as PeriodoDB
 from src.domain.dtos.periodo import Periodo
@@ -19,7 +19,7 @@ class PeriodoService:
         response = PeriodoUtil.from_db_to_base_model(periodo_db)
         return response
 
-    def find_all_periodos(self) -> List:
+    def find_all_periodos(self) -> Any:
         all_periodos = self.periodo_repo.find_all_periodos()
 
         response = PeriodoUtil.from_db_list_to_base_model(all_periodos)

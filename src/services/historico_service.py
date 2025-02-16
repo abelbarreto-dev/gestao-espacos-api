@@ -1,4 +1,4 @@
-from typing import List, Any
+from typing import Any
 
 from src.domain.db.historico import Historico as HistoricoDB
 from src.domain.dtos.historico import Historico
@@ -19,7 +19,7 @@ class HistoricoService:
         response = HistoricoUtil.from_db_to_base_model(historico_db)
         return response
 
-    def find_all_historicos(self) -> List:
+    def find_all_historicos(self) -> Any:
         historico = self.story_repo.find_all_historicos()
 
         response = HistoricoUtil.from_db_list_to_base_model(historico)
@@ -31,7 +31,7 @@ class HistoricoService:
         response = HistoricoUtil.from_db_list_to_base_model(historico)
         return response
 
-    def filter_historico_by_solicitacao_id(self, solicitacao_id: int) -> List:
+    def filter_historico_by_solicitacao_id(self, solicitacao_id: int) -> Any:
         historico = self.story_repo.filter_historico_by_solicitacao_id(solicitacao_id)
 
         response = HistoricoUtil.from_db_list_to_base_model(historico)

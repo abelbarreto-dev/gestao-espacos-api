@@ -1,4 +1,4 @@
-from typing import List, Any
+from typing import Any
 
 from src.domain.db.autorizacao import Autorizacao as AutorizacaoDB
 from src.domain.dtos.autorizacao import Autorizacao
@@ -19,7 +19,7 @@ class AutorizacaoService:
         response = AutorizacaoUtil.from_db_to_base_model(autorizacao_db)
         return response
 
-    def find_all_autorizacaos(self) -> List:
+    def find_all_autorizacaos(self) -> Any:
         all_autorize = self.auth_repo.find_all_autorizacaos()
 
         response = AutorizacaoUtil.from_db_list_to_base_model(all_autorize)

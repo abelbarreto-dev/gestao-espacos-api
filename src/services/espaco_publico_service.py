@@ -1,4 +1,4 @@
-from typing import List, Any
+from typing import Any
 
 from src.domain.db.espaco_publico import EspacoPublico as EspacoDB
 from src.domain.dtos.espaco_publico import EspacoPublico
@@ -19,7 +19,7 @@ class EspacoPublicoService:
         response = EspacoPublicoUtil.from_db_to_base_model(new_espaco_publico)
         return response
 
-    def find_all_espaco_publicos(self) -> List:
+    def find_all_espaco_publicos(self) -> Any:
         all_esp_pub = self.esp_pub_repo.find_all_espaco_publicos()
 
         response = EspacoPublicoUtil.from_db_list_to_base_model(all_esp_pub)
@@ -31,13 +31,13 @@ class EspacoPublicoService:
         response = EspacoPublicoUtil.from_db_to_base_model(esp_pub)
         return response
 
-    def filter_espaco_publico_by_disponibilidade(self, disponibilidade: bool) -> List:
+    def filter_espaco_publico_by_disponibilidade(self, disponibilidade: bool) -> Any:
         esp_pub = self.esp_pub_repo.filter_espaco_publico_by_disponibilidade(disponibilidade)
 
         response = EspacoPublicoUtil.from_db_list_to_base_model(esp_pub)
         return response
 
-    def update_espaco_publico(self, espaco_publico: EspacoDB, id: int) -> EspacoDB:
+    def update_espaco_publico(self, espaco_publico: EspacoDB, id: int) -> Any:
         EspacoPublicoUtil.check_all(espaco_publico)
 
         esp_pub = self.esp_pub_repo.update_espaco_publico(espaco_publico, id)
