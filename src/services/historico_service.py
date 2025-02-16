@@ -22,10 +22,10 @@ class HistoricoService:
     def find_historico_by_id(self, id: int) -> Any:
         return self.story_repo.find_historico_by_id(id)
 
-    def update_historico(self, historico: HistoricoDB) -> Any:
+    def update_historico(self, historico: HistoricoDB, id: int) -> Any:
         HistoricoUtil.check_all(historico)
 
-        return self.story_repo.update_historico(historico)
+        return self.story_repo.update_historico(historico, id)
 
     def delete_historico_by_id(self, id: int) -> Any:
         return self.story_repo.delete_historico_by_id(id)

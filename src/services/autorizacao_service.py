@@ -19,7 +19,7 @@ class AutorizacaoService:
     def find_all_autorizacaos(self) -> List:
         return self.auth_repo.find_all_autorizacaos()
 
-    def find_all_autorizacao_by_id(self, id: int) -> Any:
+    def find_autorizacao_by_id(self, id: int) -> Any:
         return self.auth_repo.find_autorizacao_by_id(id)
 
     def update_autorizacao(self, autorizacao: AutorizacaoDB, id: int) -> Any:
