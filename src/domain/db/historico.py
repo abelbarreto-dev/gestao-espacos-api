@@ -1,4 +1,6 @@
-from sqlalchemy import String, Text, ForeignKey
+from datetime import datetime
+
+from sqlalchemy import String, Text, ForeignKey, DateTime
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from src.domain.db.base import Base
@@ -17,6 +19,7 @@ class Historico(Base):
 
     valor_anterior: Mapped[str] = mapped_column(Text, nullable=False)
     valor_novo: Mapped[str] = mapped_column(Text, nullable=False)
+    data_modificacao: Mapped[datetime] = mapped_column(DateTime, nullable=False, default=datetime.now())
 
     solicitacao: Mapped["Solicitacao"] = relationship(back_populates="historico")
     usuario: Mapped["Usuario"] = relationship(back_populates="historico")
