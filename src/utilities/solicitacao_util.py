@@ -1,5 +1,3 @@
-from datetime import datetime
-
 from src.domain.db.solicitacao import Solicitacao as SolicitacaoDB
 from src.domain.dtos.solicitacao import Solicitacao
 
