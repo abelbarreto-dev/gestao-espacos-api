@@ -1,4 +1,4 @@
-from typing import Any
+from typing import Any, Optional
 
 from src.domain.db.espaco_publico import EspacoPublico as EspacoDB
 from src.domain.dtos.espaco_publico import EspacoPublico

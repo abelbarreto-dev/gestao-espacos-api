@@ -1,4 +1,4 @@
-from typing import List, Any
+from typing import List, Any, Optional
 
 from src.domain.db.historico import Historico as HistoricoDB
 from src.domain.dtos.historico import Historico
