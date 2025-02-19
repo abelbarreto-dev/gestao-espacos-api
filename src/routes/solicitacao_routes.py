@@ -26,7 +26,7 @@ def find_solicitacao_by_id(id: int) -> Any:
 
 
 @solicitacao_routes.get("/solicitacoes/filter")
-def filter_solicitacao_by_status(
+def filter_solicitacao_by_status_or_solicitante_id(
         status: Optional[str] = None,
         solicitante_id: Optional[int] = None
 ) -> Any:
@@ -34,6 +34,11 @@ def filter_solicitacao_by_status(
         status,
         solicitante_id
     )
+
+# rota espeicial para projeto
+@solicitacao_routes.get("/solicitacoes/status/{status}")
+def filter_solicitacao_by_status(status: str) -> Any:
+    return solicit_controller.filter_solicitacao_by_status(status)
 
 
 @solicitacao_routes.put("/solicitacoes/{id}")

@@ -54,6 +54,15 @@ class SolicitacaoController:
         except Exception as ex:
             raise HTTPError(str(ex))
 
+    def filter_solicitacao_by_status(self, status: str) -> Any:
+        try:
+            data = self.solicit_service.filter_solicitacao_by_status(status)
+
+            response = response_builder(data=data)
+            return response
+        except Exception as ex:
+            raise HTTPError(str(ex))
+
     def update_solicitacao(self, solicitacao: dict, id: int) -> Any:
         try:
             new_solicitacao = SolicitacaoDB(**solicitacao)
