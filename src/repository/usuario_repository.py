@@ -14,10 +14,10 @@ class UsuarioRepository:
     def create_user(self, user: Usuario) -> Any:
         with Session(self.engine) as session:
             session.add(user)
+            session.flush()
             session.commit()
-            new_user = session.query(Usuario).filter_by(email=user.email).first()
 
-        return new_user
+        return user
 
     def find_user_by_id(self, id: int) -> Any:
         with Session(self.engine) as session:
