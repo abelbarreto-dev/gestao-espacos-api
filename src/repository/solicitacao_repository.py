@@ -13,6 +13,7 @@ class SolicitacaoRepository:
     def create_solicitacao(self, solicitaco: Solicitacao) -> Solicitacao:
         with Session(self.engine) as session:
             session.add(solicitaco)
+            session.flush()
             session.commit()
 
         return solicitaco
