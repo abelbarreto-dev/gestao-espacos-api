@@ -12,7 +12,7 @@ solicit_router = APIRouter()
 
 @solicit_router.post("/solicitantes")
 def create_solicitante(solicitante: Solicitante) -> Any:
-    return solicitante.create_solicitante(solicitante)
+    return solicit_controller.create_solicitante(solicitante)
 
 
 @solicit_router.get("/solicitantes")
