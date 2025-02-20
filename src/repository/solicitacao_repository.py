@@ -22,9 +22,6 @@ class SolicitacaoRepository:
         with Session(self.engine) as session:
             solicitacaos = session.query(Solicitacao).all()
 
-            if not solicitacaos:
-                raise Exception("Any solicitacao not found")
-
         return solicitacaos
 
     def find_solicitacao_by_id(self, id: int) -> Any:
