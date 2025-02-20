@@ -18,7 +18,7 @@ def create_user(user: Usuario) -> Any:
     return user_controller.create_user(user)
 
 
-@usuario_routes.get("/usuarios/login")
+@usuario_routes.post("/usuarios/login")
 def find_user_make_login(login: LoginDto) -> Any:
     return user_controller.find_user_make_login(login)
 
