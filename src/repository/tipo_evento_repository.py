@@ -21,9 +21,6 @@ class TipoEventoRepository:
         with Session(self.engine) as session:
             tipo_eventos = session.query(TipoEvento).all()
 
-        if not tipo_eventos:
-            raise Exception("No tipo eventos found")
-
         return tipo_eventos
 
     def find_tipo_evento_by_id(self, id: int) -> Any:
