@@ -24,7 +24,7 @@ class EspacoPublicoController:
         try:
             data = self.esp_pub_service.find_all_espaco_publicos()
 
-            response = response_builder(data=data.model_dump())
+            response = response_builder(data=data)
             return response
         except Exception as ex:
             raise HTTPError(str(ex))
